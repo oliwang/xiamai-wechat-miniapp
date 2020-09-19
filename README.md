@@ -35,6 +35,8 @@
 
 ## 部署教程
 
+安装和部署请看[deployment.md](./deployment.md)
+
 ## 开源许可证标注
 
 [GNU General Public License v3.0](./LICENSE)
