@@ -1,0 +1,79 @@
+<!--miniprogram/pages/user/user.wxml-->
+<view class="container">
+  <view class="user-info-top shadow">
+    <view wx:if="{{logged_in}}" class="content">
+      <view class="btns">
+        <button open-type="share">
+          <i class="fa fa-share-alt" aria-hidden="true"></i>
+        </button>
+
+        <button bindtap="edit_user_info">
+          <i class="fa fa-edit" aria-hidden="true"></i>
+        </button>
+
+        <button open-type="contact" class="contact_button">
+          <i class="fa fa-question-circle" aria-hidden="true"></i>
+        </button>
+
+
+      </view>
+      <view class="user-info-content">
+        <view class="avatar">
+          <view class="userinfo-avatar" style="background-image: url({{user_profile.userInfo.avatarUrl}})"></view>
+        </view>
+
+        <view class="info">
+          <view class="nickname">{{ user_profile.userInfo.nickName }}</view>
+          <view class="contact">{{ user_profile.contact }}</view>
+          <view class="desc">{{ user_profile.desc }}</view>
+        </view>
+      </view>
+
+    </view>
+
+    <view wx:else class="content">
+      <view class="btns">
+        <button open-type="contact" class="contact_button">
+          <i class="fa fa-question-circle" aria-hidden="true"></i>
+        </button>
+      </view>
+
+      <view class="user-info-content">
+        <button class="login_btn" open-type="getUserInfo" bindgetuserinfo="bindGetUserInfo">登录</button>
+      </view>
+    </view>
+  </view>
+
+  <view  wx:if="{{logged_in}}" class="fav_share_btn_wrapper">
+    <view class="fav_share_btn fav_btn shadow" bindtap="goToFavorite">
+      <view class="fav_share_btn_content">
+        <i class="fa fa-heart" aria-hidden="true"></i>
+        <view>我的收藏</view>
+      </view>
+    </view>
+    <view class="fav_share_btn pic_btn shadow" bindtap="goToImage">
+      <view class="fav_share_btn_content">
+        <i class="fa fa-image" aria-hidden="true"></i>
+        <view>生成长图</view>
+      </view>
+    </view>
+    
+
+  </view>
+
+  <view class="user-items" style="visibility: {{ logged_in ? 'visible' : 'hidden'}}">
+    <content-title name="物品列表" describe="我的">
+    <l-water-flow generic:l-water-flow-item="product" bind:linitemtap="tap_item"/>
+  </content-title>
+  
+  </view>
+
+  <view wx:if="{{logged_in}}" class="hover-btn-wrapper">
+    <view class="hover-btn add-item-btn" bindtap="add_item">
+      <i class="fa fa-plus" aria-hidden="true"></i>
+    </view>
+  </view>
+
+
+  
+</view>

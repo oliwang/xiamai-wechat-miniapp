@@ -1,0 +1,12 @@
+<!--miniprogram/pages/group/group.wxml-->
+<view class="container">
+  <view class="user-items" style="visibility: {{ logged_in ? 'visible' : 'hidden'}}">
+      <content-title name="物品列表" describe="微信群">
+      <l-water-flow generic:l-water-flow-item="product" bind:linitemtap="tap_item"/>
+    </content-title>
+  </view>
+
+  <view wx:if="{{ !logged_in }}" class="notice">
+    请先登录
+  </view>
+</view>

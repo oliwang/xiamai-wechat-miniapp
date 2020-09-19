@@ -1,0 +1,58 @@
+{
+  "pages": [
+    "pages/user/user",
+    "pages/add_item/add_item",
+    "pages/group/group",
+    "pages/nearby/nearby",
+    "pages/edit_user_info/edit_user_info",
+    "pages/item/item",
+    "pages/favorite/favorite",
+    "pages/profile/profile",
+    "pages/generate_image/generate_image",
+    "pages/generate_image/choose_item"
+  ],
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#ED6663",
+    "navigationBarTitleText": "虾麦",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "color": "#8a8a8a",
+    "selectedColor": "#ED6663",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/group/group",
+        "text": "微信群",
+        "iconPath": "images/group.png",
+        "selectedIconPath": "images/group_selected.png"
+      },
+      {
+        "pagePath": "pages/user/user",
+        "text": "我的",
+        "iconPath": "images/user.png",
+        "selectedIconPath": "images/user_selected.png"
+      }
+    ]
+  },
+  "usingComponents": {
+    "l-water-flow": "/components/lin-ui/water-flow/index",
+    "l-toast": "/components/lin-ui/toast/index",
+    "l-message": "/components/lin-ui/message/index",
+    "content-title": "/components/content-title/index",
+    "content-card": "/components/content-card/index",
+    "l-button": "/components/lin-ui/button/index",
+    "l-icon": "/components/lin-ui/icon/index",
+    "l-input": "/components/lin-ui/input/index",
+    "l-textarea": "/components/lin-ui/textarea/index",
+    "l-form": "/components/lin-ui/form/index",
+    "l-form-item": "/components/lin-ui/form-item/index",
+    "product": "/components/product/index",
+    "l-checkbox-group": "/components/lin-ui/checkbox-group/index",
+    "l-checkbox": "/components/lin-ui/checkbox/index"
+  },
+  "sitemapLocation": "sitemap.json",
+  "style": "v2"
+}

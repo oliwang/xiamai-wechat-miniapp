@@ -1,0 +1,88 @@
+/* miniprogram/pages/profile/profile.wxss */
+
+.back_btn {
+  position:fixed;
+  width:60rpx;
+  height:60rpx;
+  z-index: 2;
+  /* background:white; */
+
+  text-align: center;
+
+  /* border-style: solid; */
+  border-radius: 30rpx;
+
+  background:rgba(192, 190, 190, 0.6);
+
+}
+
+.back_btn i {
+  /* width:60rpx;
+  height:60rpx; */
+  font-size:30px;
+  color:white;
+  height:60rpx;
+  
+}
+
+
+
+.user-info {
+  background: linear-gradient(#FFA372,#ED6663);
+  padding: 20px;
+  border-radius:5px;
+  width:100%;
+}
+
+.user-info-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items:center;
+  width:90%;
+  margin-left:5%;
+  margin-right:5%;
+
+}
+
+.userinfo-avatar {
+  width: 60px!important;
+  height: 60px!important;
+  border-radius: 50%!important;
+  background-size: cover;
+  background-color: white;
+}
+
+.avatar {
+  width:60px;
+  margin-right:10px;
+}
+
+.user-info-content {
+
+}
+
+.info {
+  flex-grow: 4;
+  text-align: left;
+  padding:5px;
+
+  font-weight:200;
+}
+
+.info > .nickname {
+  font-size: 20px;
+  color:white;
+}
+.info > .contact  {
+  margin-top:5px;
+  font-size: 14px;
+  color:white;
+}
+
+.info > .desc {
+  margin-top:5px;
+  font-size:14px;
+  margin-bottom:0px;
+  color:white;
+}

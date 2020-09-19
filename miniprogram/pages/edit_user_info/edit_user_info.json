@@ -1,0 +1,12 @@
+{
+  "usingComponents": {
+    "content-title": "/components/content-title/index",
+    "content-card": "/components/content-card/index",
+    "l-toast": "/components/lin-ui/toast/index",
+    "l-icon": "/components/lin-ui/icon/index",
+    "l-input": "/components/lin-ui/input/index",
+    "l-textarea":"/components/lin-ui/textarea/index",
+    "l-form": "/components/lin-ui/form/index",
+    "l-form-item": "/components/lin-ui/form-item/index"
+  }
+}

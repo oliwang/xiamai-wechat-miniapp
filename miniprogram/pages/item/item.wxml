@@ -1,0 +1,97 @@
+<!--miniprogram/pages/item/item.wxml-->
+
+<block wx:if="{{ share }}">
+  <view class="back_btn" style="width: {{capsuleButtonInfo.width/2}}px;height: {{capsuleButtonInfo.height}}px;left: {{capsuleButtonInfo.left}}px;top: {{capsuleButtonInfo.top}}px;" >
+  <i class="fa fa-home" aria-hidden="true" bindtap="navigateHome" style="width: {{capsuleButtonInfo.width/2}}px;"></i>
+</view>
+
+</block>
+<block wx:else>
+  <view class="back_btn" style="width: {{capsuleButtonInfo.width}}px;height: {{capsuleButtonInfo.height}}px;left: {{capsuleButtonInfo.left}}px;top: {{capsuleButtonInfo.top}}px;" >
+  <i class="fa fa-angle-left" aria-hidden="true" bindtap="navigateBack" style="width: {{capsuleButtonInfo.width/2}}px;"></i>
+  <i class="fa fa-home" aria-hidden="true" bindtap="navigateHome" style="width: {{capsuleButtonInfo.width/2}}px;"></i>
+</view>
+
+</block>
+
+
+
+<!-- <view wx:if="{{ !item.is_active }}" class="mask"></view> -->
+
+<view class="container">
+  <scroll-view class="images" scroll-x="true">
+      <image wx:for="{{ item.images }}" wx:for-index="idx" wx:key="idx" wx:for-item="img" class="img shadow" src="{{img}}" mode="aspectFill" bindtap="preview" data-url="{{img}}"/>
+    </scroll-view>
+
+  <view class="item-card shadow">
+    <view class="item-card-content">
+      <view wx:if="{{ mode == 'self' }}" class="status">{{ item.status }} {{ item.is_active ? '他人可见' : '他人不可见'}}</view>
+
+      <view class="title">{{ item.title }}</view>
+      <view class="price">{{ item.unit }} {{ item.price }}</view>
+
+      <view wx:if="{{ mode != 'self' }}" class="seller_info" bindtap="goToSeller">
+        <view class="user-info-content">
+        <view class="avatar">
+          <view class="userinfo-avatar" style="background-image: url({{user_profile.userInfo.avatarUrl}})"></view>
+        </view>
+
+        <view class="info">
+          <view class="nickname">{{ user_profile.userInfo.nickName }}</view>
+          <view class="contact">{{ user_profile.contact }}</view>
+          <view class="desc">{{ user_profile.desc }}</view>
+        </view>
+      </view>
+
+      </view>
+
+      <view class="tags">
+        <view class="tag category">{{ item.category }}</view>
+        <view class="tag post_code">{{ item.post_code }}</view>
+        <view wx:for="{{ item.tags }}" wx:for-index="idx" wx:key="idx" wx:for-item="tag" class="tag">{{ tag }}</view>
+      </view>
+
+      
+
+      <view class="desc">{{ item.desc }}</view>
+
+
+    
+    </view>
+  
+  </view>
+
+  
+
+  <view class="hover-btn-wrapper">
+    <block wx:if="{{ mode == 'self' }}">
+      <view class="hover-btn edit-item-btn" bindtap="edit_item">
+        <i class="fa fa-edit" aria-hidden="true"></i>
+      </view>
+      <view wx:if="{{item.is_active}}" class="hover-btn deactivate-item-btn" bindtap="deactivate_item">
+        <i class="fa fa-eye-slash" aria-hidden="true"></i>
+      </view>
+      <view wx:else class="hover-btn activate-item-btn" bindtap="activate_item">
+        <i class="fa fa-eye" aria-hidden="true"></i>
+      </view>
+      <view class="hover-btn delete-item-btn" bindtap="delete_item">
+        <i class="fa fa-trash" aria-hidden="true"></i>
+      </view>
+    </block>
+    <block wx:else>
+      <view wx:if="{{ !is_favorite }}" class="hover-btn fav-item-btn" bindtap="favorite_item">
+        <i class="fa fa-heart-o" aria-hidden="true"></i>
+      </view>
+      <view wx:else class="hover-btn fav-item-btn" bindtap="unfavorite_item">
+        <i class="fa fa-heart" aria-hidden="true"></i>
+      </view>
+    </block>
+    
+  </view>
+
+
+
+
+
+</view>
+

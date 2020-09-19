@@ -1,0 +1,40 @@
+<!--miniprogram/pages/profile/profile.wxml-->
+<block wx:if="{{ share }}">
+  <view class="back_btn" style="width: {{capsuleButtonInfo.width/2}}px;height: {{capsuleButtonInfo.height}}px;left: {{capsuleButtonInfo.left}}px;top: {{capsuleButtonInfo.top}}px;">
+    <i class="fa fa-home" aria-hidden="true" bindtap="navigateHome" style="width: {{capsuleButtonInfo.width/2}}px;"></i>
+  </view>
+
+</block>
+<block wx:else>
+  <view class="back_btn" style="width: {{capsuleButtonInfo.width}}px;height: {{capsuleButtonInfo.height}}px;left: {{capsuleButtonInfo.left}}px;top: {{capsuleButtonInfo.top}}px;">
+    <i class="fa fa-angle-left" aria-hidden="true" bindtap="navigateBack" style="width: {{capsuleButtonInfo.width/2}}px;"></i>
+    <i class="fa fa-home" aria-hidden="true" bindtap="navigateHome" style="width: {{capsuleButtonInfo.width/2}}px;"></i>
+  </view>
+
+</block>
+
+<view class="container">
+  <view class="user-info" style="padding-top:{{capsuleButtonInfo.top + capsuleButtonInfo.height + 10}}px;">
+    <view class="user-info-content">
+      <view class="avatar">
+        <view class="userinfo-avatar" style="background-image: url({{user_profile.userInfo.avatarUrl}})"></view>
+      </view>
+
+      <view class="info">
+        <view class="nickname">{{ user_profile.userInfo.nickName }}</view>
+        <view class="contact">{{ user_profile.contact }}</view>
+        <view class="desc">{{ user_profile.desc }}</view>
+      </view>
+    </view>
+
+  </view>
+
+
+  <view class="user-items">
+    <content-title name="物品列表" describe="{{ user_profile.userInfo.nickName }}">
+      <l-water-flow generic:l-water-flow-item="product" bind:linitemtap="tap_item" />
+    </content-title>
+
+  </view>
+
+</view>

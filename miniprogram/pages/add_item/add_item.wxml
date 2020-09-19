@@ -1,0 +1,76 @@
+<!--miniprogram/pages/add_item/add_item.wxml-->
+<view class='container' style="width:100%;margin:0; overflow-y:hidden;">
+  <content-title name="物品信息" describe="{{ mode=='edit' ? '修改' : '新建' }}">
+    <content-card class="content" name="基本信息">
+      <view class='buttun-wrapper'>
+        <l-input value='{{title}}' width="750" label="名称" placeholder="请输入物品名称" label-width="170" bind:lininput="title_input" rules="{{titleRules}}"/>
+        <l-input value='{{price}}' width="750" label="价格" placeholder="请输入价格" label-width="170" bind:lininput="price_input" rules="{{priceRules}}" />
+        <l-input value='{{unit}}' width="750" label="单位" placeholder="请输入价格单位" label-width="170" bind:lininput="unit_input" rules="{{unitRules}}" />
+
+
+        <l-textarea placeholder="简单介绍一下物品吧..." value="{{desc}}" bind:lininput="desc_input" required="{{true}}" rules="{{descRules}}"/>
+
+      </view>
+    </content-card>
+
+    <content-card class="content" name="位置信息">
+      <view class='buttun-wrapper'>
+        <l-input value='{{post_code}}' width="750" label="邮编" placeholder="请输入邮编" label-width="170" bind:lininput="post_code_input" rules="{{postcodeRules}}" />
+
+      </view>
+    </content-card>
+
+    <content-card class="content" name="物品分类">
+      <view class='buttun-wrapper'>
+        <l-radio-group current="{{ category_id ? category_id : 0 }}" l-class="l-radio-group" length="8" bind:linchange="category_change" none-checked="{{false}}">
+          <l-radio l-class="l-radio" wx:for="{{categories}}" wx:key="id" key="{{item.id}}" placement="{{position}}">
+            {{item.name}}
+          </l-radio>
+        </l-radio-group>
+
+
+      </view>
+
+    </content-card>
+
+    <content-card class="content" name="标签">
+      <view class='buttun-wrapper'>
+        <l-textarea placeholder="给物品加上标签，标签之间请用空格分隔" value="{{tag}}" bind:lininput="tag_input" />
+
+      </view>
+
+    </content-card>
+
+    <content-card class="content" name="请上传实物图片">
+      <l-image-picker urls="{{ real_img_urls}}" count="3" bind:linchange="real_change" bind:linremove = "real_remove"/>
+    </content-card>
+
+    <content-card class="content" name="请上传其他图片(如官网上的价格截图)">
+      <l-image-picker urls="{{ support_img_urls}}" count="3" bind:linchange="support_change" bind:linremove = "support_remove" />
+    </content-card>
+
+    <view class="btn-wrapper">
+      <view wx:if="{{mode=='edit'}}" slot="submit">
+        <l-button bindtap="edit">修改</l-button>
+      </view>
+      <view wx:else slot="submit">
+        <l-button bindtap="add">添加</l-button>
+      </view>
+
+      <view slot="reset">
+        <l-button type="default" plain bindtap="cancel">取消</l-button>
+      </view>
+    </view>
+
+
+
+
+  </content-title>
+  <l-toast />
+</view>
+
+<canvas
+	canvas-id="compress"
+	style="width:{{cWidth}}px; height:{{cHeight}}px;left:-1000px; top:-1000px;position:absolute;"
+	>
+</canvas>

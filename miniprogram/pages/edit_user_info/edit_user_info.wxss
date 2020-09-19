@@ -1,0 +1,18 @@
+/* miniprogram/pages/edit_user_info/edit_user_info.wxss */
+.l-form-btn-class{
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+.tip-type{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    margin: 40rpx 0;
+}
+
+.l-input-container-class {
+    width: 100% !important;
+}
+

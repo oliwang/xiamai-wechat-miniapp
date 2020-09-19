@@ -1,0 +1,21 @@
+<!--miniprogram/pages/generate_image/generate_image.wxml-->
+<view class="container" style="width:100%;margin:0; overflow-y:hidden;padding-bottom:40px;">
+  <content-title name="生成分享图" describe="最多10样物品" style="width:90%;">
+    <content-card class="content" name="选择物品">
+      <l-checkbox-group bind:linchange="onChangeTap" min-selected="{{1}}" max-selected="{{10}}" l-class="checkbox_group" >
+    <l-checkbox wx:for-items="{{items}}" wx:key="{{item._id}}" key="{{item._id}}" checked="{{item.isChecked}}" disabled="{{item.disabled}}" l-class="checkbox_item" select-color="#ED6663">
+      {{item.title}}
+    </l-checkbox>
+  </l-checkbox-group>
+    </content-card>
+    <button bindtap="renderToCanvas" class="render_btn">生成图片</button>
+    <view class="render_info">点击图片,预览后长按保存</view>
+  </content-title>
+  
+  
+  <!-- <button bindtap="extraImage">extraImage</button> -->
+  <!-- <button bindtap="generateImage">生成图片</button> -->
+  <wxml-to-canvas class="widget" width="{{width}}" height="{{height}}" bindtap="extraImage"></wxml-to-canvas>
+
+  <!-- <image src="{{src}}" style="width: {{width}}px; height: {{height}}px" bindtap="previewImage" ></image> -->
+</view>

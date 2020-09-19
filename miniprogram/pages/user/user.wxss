@@ -1,0 +1,133 @@
+/* miniprogram/pages/user/user.wxss */
+.user-info-top {
+  width:100%;
+  background:linear-gradient(#ED6663, #FFA372);
+
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+
+  color:white;
+}
+
+.content {
+  width:90%;
+  margin-left:5%;
+  margin-right:5%;
+
+  margin-top:10px;
+  margin-bottom:30px;
+
+}
+
+.btns {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items:center;
+
+}
+
+.btns > button {
+  width:40px!important;
+  margin-left:0px!important;
+  margin-right:0px!important;
+  text-align: center;
+  padding:10px 10px;
+}
+
+
+.btns > button .fa {
+  font-size:20px!important;
+  color:white;
+}
+
+.user-info-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items:center;
+
+}
+
+.userinfo-avatar {
+  width: 80px!important;
+  height: 80px!important;
+  border-radius: 50%!important;
+  background-size: cover;
+  background-color: white;
+}
+
+.avatar {
+  width:80px;
+  margin-right:20px;
+}
+
+.user-info-content {
+
+}
+
+.info {
+  flex-grow: 4;
+}
+
+.info > .nickname {
+  font-size: 24px;
+  font-weight: bold;
+}
+.info > .contact  {
+  margin-top:10px;
+  font-size: 18px;
+}
+
+.info > .desc {
+  margin-top:10px;
+  font-size:14px;
+}
+
+.login_btn {
+  border: white;
+  border-style:solid;
+  border-width: 2px;
+  color:white;
+  border-radius: 10px!important;
+}
+
+.fav_share_btn_wrapper {
+  margin-top:20px;
+  margin-bottom:20px;
+  width:90%;
+  margin-left:5%;
+  margin-right:5%;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items:center;
+
+}
+
+.fav_share_btn {
+  width:40%;
+  border-radius: 10px;
+
+  background:white;
+}
+
+.fav_share_btn_content {
+  padding:20px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items:center;
+
+  font-size: 16px;
+}
+
+.fav_btn i {
+  color:#ED6663;
+}
+
+.pic_btn i {
+  color:#FFA372;
+}

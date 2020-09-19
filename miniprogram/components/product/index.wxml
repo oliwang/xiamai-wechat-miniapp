@@ -1,0 +1,16 @@
+<l-card full type="cover" image="{{data.real_imgs[0]}}" image-mode="widthFix" title="{{data.title}}" l-class="life-container" l-img-class="life-img" l-title-class="life-title" bindtap="onProduct" >
+
+  <view class='life-product-contianer'>
+    
+    <view class='art-content'>{{data.desc}}</view>
+    <view class='peice-container'>
+      <l-price unit="{{data.unit}}" value="{{data.price}}" value-color="#ad0e11" unit-color="#ad0e11" count-size="36"></l-price>
+      <!-- <l-price value="{{data.delCount}}" deleted del-color="#666" value-color="#666" unit-color="#666"></l-price> -->
+    </view>
+    <view class="info" wx:if="{{ data.is_self }}">
+      <view class="status">{{ data.status }}</view>
+      <view class="is_active">{{ data.is_active ? '他人可见' : '他人不可见'}}</view>
+    </view>
+    
+  </view>
+</l-card>

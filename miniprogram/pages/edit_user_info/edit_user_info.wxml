@@ -1,0 +1,25 @@
+<!--miniprogram/pages/edit_user_info/edit_user_info.wxml-->
+<view class='container'>
+  <content-title name="用户信息" describe="修改">
+    <content-card class="content" name="个人信息">
+      <view class='buttun-wrapper'>
+        <l-form name="user-info" l-form-btn-class="l-form-btn-class">
+          <l-input value='{{contact}}' width="750" label="联系方式" placeholder="请输入联系方式" label-width="170" bind:lininput="contact_input" />
+          <l-textarea indicator="{{true}}" maxlength="40" placeholder="简单介绍一下自己吧..." value="{{desc}}" bind:lininput="desc_input"/>
+
+          <view slot="submit">
+            <l-button bindtap="edit">修改</l-button>
+          </view>
+
+          <view slot="reset">
+            <l-button type="default" plain bindtap="cancel" >取消</l-button>
+          </view>
+
+        </l-form>
+
+      </view>
+    </content-card>
+
+
+  </content-title>
+</view>

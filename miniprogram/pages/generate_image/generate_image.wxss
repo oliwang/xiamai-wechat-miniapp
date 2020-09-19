@@ -1,0 +1,15 @@
+/* miniprogram/pages/generate_image/generate_image.wxss */
+
+.render_btn {
+  background:#ED6663;
+  color: white;
+  margin-bottom: 5px;
+
+
+}
+
+.render_info {
+  font-weight: 200;
+  font-size: 12px;
+  color: #3f3f3f;
+}

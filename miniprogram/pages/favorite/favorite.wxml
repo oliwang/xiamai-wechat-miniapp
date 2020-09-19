@@ -1,0 +1,8 @@
+<!--miniprogram/pages/favorite/favorite.wxml-->
+<view class="container">
+<view class="user-items">
+    <content-title name="物品列表" describe="我的收藏">
+    <l-water-flow generic:l-water-flow-item="product" bind:linitemtap="tap_item"/>
+  </content-title>
+</view>
+</view>
