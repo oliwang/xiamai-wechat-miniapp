@@ -40,7 +40,7 @@
 调用[openapi.security.msgSecCheck](https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/sec-check/security.msgSecCheck.html)和[openapi.security.imgSecCheck](https://developers.weixin.qq.com/miniprogram/dev/api-backend/open-api/sec-check/security.imgSecCheck.html)检查文字图片是否合规。
 
 # 架构图
-![虾麦架构图](./xiamai_structure)
+![虾麦架构图](./xiamai_structure.png)
 
 # 效果截图
 
