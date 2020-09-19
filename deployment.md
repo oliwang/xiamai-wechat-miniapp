@@ -26,9 +26,8 @@
 瀑布流卡片布局需要自己写卡片item的组件，我的写法可以在components/product里看到。这个写法来自Lin-UI repo中的water-flow example。
 
 - [wxml-to-canvas](https://github.com/wechat-miniprogram/wxml-to-canvas)
-直接使用
-- [wxml-to-canvas](https://github.com/wechat-miniprogram/wxml-to-canvas)
-- [wxml-to-canvas](https://github.com/wechat-miniprogram/wxml-to-canvas)
+直接使用wxml-to-canvas画图
+
 
 # 云数据库中需要创建哪些数据
 需要先创建4张表格
