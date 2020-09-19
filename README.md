@@ -1,5 +1,7 @@
 # 二手虾麦微信小程序
 
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+
 ## 项目名称
 虾麦
 
