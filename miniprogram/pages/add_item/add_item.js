@@ -339,8 +339,6 @@ Page({
         var real_imgs = [];
         var support_imgs = [];
 
-        // TODO 新images不对，还是tmp路径
-
         for (var i = 0; i < new_real.length; i++) {
           if (ori_real.includes(new_real[i])) {
             real_imgs.push(new_real[i]);
@@ -702,6 +700,8 @@ function create_UUID() {
 //来源：掘金
 //著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。
 
+// 压缩　-> 在canvas上绘制，生成小图 -> 检查内容
+
 function compress(path, that) {
   return new Promise((resolve, reject) => {
     wx.getImageInfo({
@@ -736,24 +736,6 @@ function compress(path, that) {
   });
 
 }
-
-// wx.getImageInfo({
-//   src: 'https://7869-xiamai-ix9h1-1302385800.tcb.qcloud.la/item_imgs/fa9bd640-ecb4-438e-84c0-72d299548709.jpg?sign=2655131c09d9beba134fde127c9029cc&t=1600505970',
-//   success: function (res) {
-//     console.log(res)
-//     that.setData({
-//       cWidth: res.width,
-//       cHeight: res.height
-//     })
-
-//     var path = res.path;
-//     let ctx = wx.createCanvasContext('compress');
-//     // ctx.clearRect(0, 0, width, height);
-//     ctx.drawImage(path, 0, 0, res.width, res.height, 0, 0, 300, 500);
-//     ctx.draw(true);
-//     console.log("after draw")
-//   }
-// })
 
 function render(path, width, height, that) {
   return new Promise((resolve, reject) => {

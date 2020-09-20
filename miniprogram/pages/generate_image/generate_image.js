@@ -28,13 +28,13 @@ Page({
 
     wx.cloud.callFunction({
       name: "get_user_active_items",
-      data:{}
-    }).then(res=>{
+      data: {}
+    }).then(res => {
       console.log(res)
       wx.hideLoading();
       var items = res.result.data;
-      items = items.map((x, index)=>{
-        x.isChecked = false; 
+      items = items.map((x, index) => {
+        x.isChecked = false;
         x.disabled = false;
 
         if (index < 10) {
@@ -54,7 +54,7 @@ Page({
   },
 
   renderToCanvas: async function() {
-    if (this.data.items.filter(x=>x.isChecked).length == 0) {
+    if (this.data.items.filter(x => x.isChecked).length == 0) {
       wx.showModal({
         title: '没有选中物品',
         content: '请至少选中一个物品',
@@ -86,7 +86,7 @@ Page({
 
     }
 
-    
+
   },
 
   extraImage: function() {
@@ -106,43 +106,11 @@ Page({
     })
   },
 
-  previewImage: function(){
+  previewImage: function() {
     wx.previewImage({
       current: this.data.src,
       urls: [this.data.src],
     })
-  },
-
-  generateImage: async function(){
-    var that = this;
-
-    const p1 = await this.widget.renderToCanvas({
-      wxml,
-      style
-    })
-
-    console.log("p1", p1)
-    this.container = p1.layoutBox;
-
-    this.setData({
-      width: p1.layoutBox.width,
-      height: p1.layoutBox.height
-    })
-
-    const p2 = await this.widget.canvasToTempFilePath();
-
-    console.log("p2", p2);
-
-    var src = p2.tempFilePath;
-
-    this.setData({
-      src: src
-    })
-
-    wx.previewImage({
-      urls: [src],
-    })
-
   },
 
   /**
@@ -200,7 +168,7 @@ Page({
 
     var items = this.data.items;
 
-    items.forEach(item=>{
+    items.forEach(item => {
       if (item._id == id) {
         item.isChecked = e.detail.checked;
       }
@@ -225,18 +193,20 @@ Page({
     </view>
     `;
 
-    console.log("desc",user_profile.desc);
+    console.log("desc", user_profile.desc);
 
     var item_info_str = "";
 
-    var items = this.data.items.filter(item=>item.isChecked);
+    var items = this.data.items.filter(item => item.isChecked);
     console.log(items);
 
     var item_info_promise = await Promise.all(items.map(item => {
-      return new Promise(async (resolve, reject)=>{
+      return new Promise(async(resolve, reject) => {
         var images = item.real_imgs.concat(item.support_imgs);
 
-        var images_result = await wx.cloud.getTempFileURL({ fileList: images });
+        var images_result = await wx.cloud.getTempFileURL({
+          fileList: images
+        });
         // console.log("images_result", images_result);
         var tmp_images = images_result.fileList.map((x, index) => {
           return `
@@ -426,7 +396,7 @@ const style = {
     flexDirection: 'row',
     flexWrap: 'wrap',
     justifyContent: 'space-around',
-    backgroundColor:"#e8eaef"
+    backgroundColor: "#e8eaef"
 
 
   },
@@ -441,17 +411,17 @@ const style = {
 
   },
 
-  footer:{
+  footer: {
     flexDirection: 'column',
     width: 320,
     justifyContent: 'center',
     alignItems: 'center',
-    marginBottom:20
+    marginBottom: 20
     // height:100
 
   },
 
-  slogan:{
+  slogan: {
     color: "#ED6663",
     verticalAlign: 'middle',
     height: 20,
@@ -459,19 +429,19 @@ const style = {
     width: 320,
     textAlign: 'center',
     marginTop: 5,
-    
+
 
   },
-  logoImage:{
-    width:80,
-    height:80,
-    
+  logoImage: {
+    width: 80,
+    height: 80,
+
 
   },
 
   sloganContent: {
-    textAlign:'center',
-    marginTop:10,
+    textAlign: 'center',
+    marginTop: 10,
     height: 20,
     verticalAlign: 'middle',
     fontSize: 12,

@@ -10,34 +10,31 @@ Page({
    */
   data: {
     mode: "self",
-    // user_profile: {
-    //   contact: "qq:123456",
-    //   desc: "XXX University CS major",
-    //   userInfo: {
-    //     avatarUrl: "https://7869-xiamai-ix9h1-1302385800.tcb.qcloud.la/item_imgs/bff62775-3e2d-4c82-a88b-8b6c3490ffe3.jpg?sign=8d010087d23768da9dc5ce11bb1350fa&t=1599876644",
-    //     nickName:"小花"
-
-    //   }
-    // }
 
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function (options) {
+  onLoad: function(options) {
     console.log("options", options);
-    wx.showShareMenu({ withShareTicket: true });
+    wx.showShareMenu({
+      withShareTicket: true
+    });
 
     var that = this;
 
     var capsuleButtonInfo = getCapsuleButtonInfo();
 
-    // get item ->
-    //
+    // 获取item ->
+    // 判断mode，计算capsuleButton位置 ->
+    // 如果mode是other获取seller信息 ->
+    // 判断是否来自分享 ->
+    // 获取是否收藏 ->
+    // 展示
 
-    new Promise((resolve, reject)=>{
-      if (options.item){
+    new Promise((resolve, reject) => {
+      if (options.item) {
         var item = JSON.parse(options.item)
         resolve(item);
       } else {
@@ -48,27 +45,35 @@ Page({
 
       }
 
-    }).then(result=>{
+    }).then(result => {
       var item = result;
       var images = item.real_imgs.concat(item.support_imgs);
       item.images = images;
 
-      return new Promise((resolve, reject)=>{
+      return new Promise((resolve, reject) => {
         var mode = "";
 
         if (options.mode) {
-          resolve({ "mode": options.mode, "item": item, "capsuleButtonInfo": capsuleButtonInfo});
+          resolve({
+            "mode": options.mode,
+            "item": item,
+            "capsuleButtonInfo": capsuleButtonInfo
+          });
         } else {
           db.collection("items").where({
             _openid: wx.getStorageSync('openid'),
             _id: options.id
-          }).count().then(res=>{
+          }).count().then(res => {
             if (res.total == 0) {
               mode = "other";
             } else {
               mode = "self"
             }
-            resolve({ "mode": mode, "item": item, "capsuleButtonInfo": capsuleButtonInfo });
+            resolve({
+              "mode": mode,
+              "item": item,
+              "capsuleButtonInfo": capsuleButtonInfo
+            });
 
           })
 
@@ -78,7 +83,7 @@ Page({
     }).then(result => {
       var data = result;
 
-      return new Promise((resolve, reject)=>{
+      return new Promise((resolve, reject) => {
         if (data.mode == "other") {
           db.collection("users").where({
             "_openid": data.item._openid
@@ -94,9 +99,9 @@ Page({
 
       });
 
-      
 
-    }).then(result=>{
+
+    }).then(result => {
       // console.log("result", result);
       var data = result;
 
@@ -109,7 +114,7 @@ Page({
           resolve(data);
         }
       })
-    }).then(result=>{
+    }).then(result => {
       console.log("result", result);
       var data = result;
 
@@ -132,39 +137,40 @@ Page({
         })
 
       })
-    }).then(result=>{
+    }).then(result => {
       that.setData(result);
     })
 
-    
+
 
   },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function () {
-    
+  onReady: function() {
+
 
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
-  onShow: function () {
+  onShow: function() {
 
   },
 
   /**
    * 生命周期函数--监听页面隐藏
+   * Hide前将收藏和是否对他人隐藏保存到数据库
    */
-  onHide: function () {
+  onHide: function() {
     console.log("item.js onHide");
 
     var that = this;
     if (this.data.mode == "self") {
       db.collection("items").doc(that.data.item._id).update({
-        data:{
+        data: {
           is_active: that.data.item.is_active
         }
       })
@@ -181,7 +187,7 @@ Page({
         } else {
           db.collection("user-favorite").doc(that.data.fav_id).remove();
         }
-        
+
       }
     }
 
@@ -189,8 +195,9 @@ Page({
 
   /**
    * 生命周期函数--监听页面卸载
+   * 将收藏和是否对他人隐藏保存到数据库
    */
-  onUnload: function () {
+  onUnload: function() {
     console.log("item.js onUnload");
 
     var that = this;
@@ -222,21 +229,21 @@ Page({
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
-  onPullDownRefresh: function () {
+  onPullDownRefresh: function() {
 
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
+  onReachBottom: function() {
 
   },
 
   /**
    * 用户点击右上角分享
    */
-  onShareAppMessage: function () {
+  onShareAppMessage: function() {
     console.log("item.js onShareAppMessage")
     var that = this;
 
@@ -246,7 +253,7 @@ Page({
       path: '/pages/item/item?share=true&id=' + that.data.item._id
     };
 
-    
+
 
 
   },
@@ -261,27 +268,27 @@ Page({
 
   navigateBack: function() {
     wx.navigateBack({
-      
+
     })
   },
 
-  navigateHome: function () {
+  navigateHome: function() {
 
     wx.switchTab({
       url: '/pages/user/user'
     })
 
-    
+
   },
 
-  edit_item: function(){
+  edit_item: function() {
     var that = this;
     wx.navigateTo({
       url: '/pages/add_item/add_item?item=' + JSON.stringify(that.data.item),
     })
   },
 
-  deactivate_item: function(){
+  deactivate_item: function() {
     var item = this.data.item;
     item.is_active = false;
 
@@ -291,7 +298,7 @@ Page({
 
   },
 
-  activate_item: function () {
+  activate_item: function() {
     var item = this.data.item;
     item.is_active = true;
 
@@ -301,7 +308,7 @@ Page({
 
   },
 
-  delete_item: function(){
+  delete_item: function() {
     console.log("delete");
     var that = this;
     wx.showModal({
@@ -309,32 +316,35 @@ Page({
       content: '确定删除【' + that.data.item.title + '】吗？',
       success(res) {
         if (res.confirm) {
-          db.collection("items").doc(that.data.item._id).update({data:{deleted:true}}).then(res=>{
+          db.collection("items").doc(that.data.item._id).update({
+            data: {
+              deleted: true
+            }
+          }).then(res => {
             wx.navigateBack({});
           })
-          
-        } else if (res.cancel) {
-        }
+
+        } else if (res.cancel) {}
       }
 
     })
   },
 
-  favorite_item: function(){
+  favorite_item: function() {
     this.setData({
       is_favorite: true
     });
 
   },
 
-  unfavorite_item: function(){
+  unfavorite_item: function() {
     this.setData({
       is_favorite: false
     });
 
   },
 
-  goToSeller: function(){
+  goToSeller: function() {
     var openid = this.data.item._openid;
     wx.navigateTo({
       url: '/pages/profile/profile?openid=' + openid,
