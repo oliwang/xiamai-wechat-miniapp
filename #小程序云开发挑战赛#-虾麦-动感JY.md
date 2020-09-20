@@ -75,7 +75,7 @@
 # 介绍视频
 [https://v.qq.com/x/page/a3153ll5hu6.html](https://v.qq.com/x/page/a3153ll5hu6.html)
 
-# 作品体验二维码（如已上线）
+# 作品体验二维码
 
 ![虾麦](./qr_logo_xiamai.jpg)
 
