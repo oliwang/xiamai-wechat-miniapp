@@ -39,8 +39,6 @@ Page({
             success: res => {
               var userInfo = res.userInfo;
               var openid = wx.getStorageSync('openid');
-              console.log("userInfo", userInfo);
-              console.log("app.globalData.openid", openid)
 
               db.collection('users').where({
                 _openid: openid
@@ -77,7 +75,6 @@ Page({
                     }
                   });
 
-                  app.globalData._id = _id;
 
                 })
 
@@ -168,19 +165,9 @@ Page({
 
     return {
       title: that.data.user_profile.userInfo.nickName + "的主页",
-      // imageUrl: that.data.item.real_imgs[0],
       path: '/pages/profile/profile?share=true&openid=' + that.data.user_profile._openid
     }
 
-  },
-
-  share_user_info: function() {
-    var that = this;
-    return {
-      title: that.data.user_profile.userInfo.nickName + "的主页",
-      // imageUrl: that.data.item.real_imgs[0],
-      path: '/pages/profile/profile?share=true&openid=' + that.data.user_profile._openid
-    }
   },
 
   bindGetUserInfo: function(e) {
@@ -190,37 +177,72 @@ Page({
       var userInfo = e.detail.userInfo;
       console.log(userInfo);
 
-      db.collection('users').where({
-        _openid: app.globalData.openid
-      }).get().then(res => {
-        console.log("user after init", res)
+      wx.cloud.callFunction({
+        name: 'login',
+        data: {},
+        success: res => {
+          wx.setStorage({
+            key: 'openid',
+            data: res.result.openid,
+          })
 
-        if (res.data.length == 0) {
-          db.collection("users").add({
-            data: {
-              userInfo: userInfo,
-              dateJoined: new Date(),
-              contact: "未设置联系方式",
-              desc: "未设置简介"
-            }
-          }).then(res => {
-            console.log(userInfo);
-            app.globalData.logged_in = true;
-            that.setData({
-              logged_in: true,
-              user_profile: {
-                userInfo: userInfo,
-                contact: "未设置联系方式",
-                desc: "未设置简介"
-              }
-            });
+          var openid = res.result.openid;
 
-            db.collection("users").where({
-              _openid: app.globalData.openid
-            }).get().then(res=>{
-              console.log("after signin res", res);
+          db.collection('users').where({
+            _openid: openid
+          }).get().then(res => {
+            console.log("user after init", res)
+
+            if (res.data.length == 0) {
+              // 没有用户记录
+              db.collection("users").add({
+                data: {
+                  userInfo: userInfo,
+                  dateJoined: new Date(),
+                  contact: "未设置联系方式",
+                  desc: "未设置简介"
+                }
+              }).then(res => {
+                console.log(userInfo);
+                app.globalData.logged_in = true;
+                that.setData({
+                  logged_in: true,
+                  user_profile: {
+                    userInfo: userInfo,
+                    contact: "未设置联系方式",
+                    desc: "未设置简介"
+                  }
+                });
+
+                db.collection("users").where({
+                  _openid: openid
+                }).get().then(res => {
+                  console.log("after signin res", res);
+                  var _id = res.data[0]._id;
+
+                  wx.getStorage({
+                    key: '_id',
+                    success(res) {
+                      console.log(res.data)
+                      app.globalData._id = res.data;
+                    },
+                    fail(err) {
+                      console.log("no _id");
+                      wx.setStorage({
+                        key: '_id',
+                        data: _id,
+                      })
+                    }
+                  });
+                })
+
+
+              })
+
+            } else {
               var _id = res.data[0]._id;
-              
+              var profile = res.data[0];
+
               wx.getStorage({
                 key: '_id',
                 success(res) {
@@ -235,47 +257,28 @@ Page({
                   })
                 }
               });
-            })
 
+              db.collection('users').doc(_id).update({
+                data: {
+                  userInfo: userInfo
+                }
+              }).then(res => {
+                console.log("user after update", res)
+                app.globalData.logged_in = true;
+                that.setData({
+                  logged_in: true,
+                  user_profile: profile
+                });
 
-          })
-
-        } else {
-          var _id = res.data[0]._id;
-          var profile = res.data[0];
-
-          wx.getStorage({
-            key: '_id',
-            success(res) {
-              console.log(res.data)
-              app.globalData._id = res.data;
-            },
-            fail(err) {
-              console.log("no _id");
-              wx.setStorage({
-                key: '_id',
-                data: _id,
               })
-            }
-          });
 
-          db.collection('users').doc(_id).update({
-            data: {
-              userInfo: userInfo
             }
-          }).then(res => {
-            console.log("user after update", res)
-            app.globalData.logged_in = true;
-            that.setData({
-              logged_in: true,
-              user_profile: profile
-            });
 
           })
-
         }
+      });
 
-      })
+      
 
     } else {
       console.log(e.detail)

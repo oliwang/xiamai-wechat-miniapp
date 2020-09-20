@@ -33,6 +33,9 @@ Page({
 
     var capsuleButtonInfo = getCapsuleButtonInfo();
 
+    // get item ->
+    //
+
     new Promise((resolve, reject)=>{
       if (options.item){
         var item = JSON.parse(options.item)
@@ -57,7 +60,7 @@ Page({
           resolve({ "mode": options.mode, "item": item, "capsuleButtonInfo": capsuleButtonInfo});
         } else {
           db.collection("items").where({
-            _openid: app.globalData.openid,
+            _openid: wx.getStorageSync('openid'),
             _id: options.id
           }).count().then(res=>{
             if (res.total == 0) {
@@ -112,7 +115,7 @@ Page({
 
       return new Promise((resolve, reject) => {
         db.collection("user-favorite").where({
-          _openid: app.globalData.openid,
+          _openid: wx.getStorageSync('openid'),
           item_id: options.id
         }).get().then(res => {
           // console.log("res", res);
