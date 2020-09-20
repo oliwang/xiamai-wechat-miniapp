@@ -8,8 +8,7 @@
     "pages/item/item",
     "pages/favorite/favorite",
     "pages/profile/profile",
-    "pages/generate_image/generate_image",
-    "pages/generate_image/choose_item"
+    "pages/generate_image/generate_image"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

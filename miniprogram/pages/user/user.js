@@ -38,12 +38,16 @@ Page({
           wx.getUserInfo({
             success: res => {
               var userInfo = res.userInfo;
+              var openid = wx.getStorageSync('openid');
+              console.log("userInfo", userInfo);
+              console.log("app.globalData.openid", openid)
 
               db.collection('users').where({
-                _openid: app.globalData.openid
+                _openid: openid
               }).get().then(res => {
                 // console.log("res", res);
                 var _id = res.data[0]._id;
+                var _openid = res.data[0]._openid;
                 var profile = res.data[0];
 
                 db.collection('users').doc(_id).update({
@@ -58,10 +62,19 @@ Page({
                     user_profile: profile
                   });
 
-
-                  wx.setStorage({
+                  wx.getStorage({
                     key: '_id',
-                    data: _id,
+                    success(res) {
+                      console.log("1", res.data)
+                      app.globalData._id = res.data;
+                    },
+                    fail(err) {
+                      console.log("no _id");
+                      wx.setStorage({
+                        key: '_id',
+                        data: _id,
+                      })
+                    }
                   });
 
                   app.globalData._id = _id;
@@ -202,12 +215,49 @@ Page({
               }
             });
 
+            db.collection("users").where({
+              _openid: app.globalData.openid
+            }).get().then(res=>{
+              console.log("after signin res", res);
+              var _id = res.data[0]._id;
+              
+              wx.getStorage({
+                key: '_id',
+                success(res) {
+                  console.log(res.data)
+                  app.globalData._id = res.data;
+                },
+                fail(err) {
+                  console.log("no _id");
+                  wx.setStorage({
+                    key: '_id',
+                    data: _id,
+                  })
+                }
+              });
+            })
+
 
           })
 
         } else {
           var _id = res.data[0]._id;
           var profile = res.data[0];
+
+          wx.getStorage({
+            key: '_id',
+            success(res) {
+              console.log(res.data)
+              app.globalData._id = res.data;
+            },
+            fail(err) {
+              console.log("no _id");
+              wx.setStorage({
+                key: '_id',
+                data: _id,
+              })
+            }
+          });
 
           db.collection('users').doc(_id).update({
             data: {

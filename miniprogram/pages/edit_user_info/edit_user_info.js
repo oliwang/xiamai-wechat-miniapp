@@ -102,9 +102,12 @@ Page({
       console.log("itemContentSecurityCheck", res)
 
       if (res.result.errCode == 0) {
+        console.log("errCode == 0");
+        
         wx.getStorage({
           key: '_id',
           success: function (res) {
+            console.log("get _id success");
             var _id = res.data;
 
             db.collection('users').doc(_id).update({

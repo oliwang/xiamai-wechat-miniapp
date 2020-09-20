@@ -262,7 +262,7 @@ Page({
     ${seller_info_template}
     ${item_info_template}
     <view class="footer">
-      <image class="logo-image" src="https://7869-xiamai-ix9h1-1302385800.tcb.qcloud.la/images/gh_874fdc8f3a7f_258.jpg"></image>
+      <image class="logo-image" src="https://7869-xiamai-ix9h1-1302385800.tcb.qcloud.la/images/gh_874fdc8f3a7f_258-2.jpg"></image>
       <text class="slogan slogan-content">东西不坏，全场虾麦</text>
       <text class="slogan">虾麦</text>
     </view>

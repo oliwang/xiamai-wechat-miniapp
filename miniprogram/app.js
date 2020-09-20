@@ -109,7 +109,6 @@ App({
 
               const db = wx.cloud.database();
 
-              // console.log("app.globalData.openid", app.globalData.openid)
               db.collection("user-group").where({
                 gid: openGId,
                 _openid: openid
