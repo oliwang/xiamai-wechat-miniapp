@@ -45,22 +45,29 @@
 # 效果截图
 
 用户主页
-![user](./images/user.png)
+
+<img src="./images/user.PNG" height="400">
 
 微信群物品
-![group](./images/group.png)
+
+<img src="./images/group.PNG" height="400">
 
 物品页面
-![item](./images/item.png)
+
+<img src="./images/item.PNG" height="400">
+
 
 我的收藏
-![favorite](./images/favorite.png)
+
+<img src="./images/favorite.PNG" height="400">
 
 一键生成海报
-![generate_image](./images/generate_image.png)
+
+<img src="./images/generate_image.PNG" height="400">
 
 海报
-![poster](./images/poster.png)
+
+<img src="./images/poster.PNG" height="400">
 
 # 代码链接
 [https://github.com/oliwang/xiamai-wechat-miniapp](https://github.com/oliwang/xiamai-wechat-miniapp)
