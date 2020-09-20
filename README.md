@@ -55,7 +55,7 @@
 <img src="./images/poster.PNG" height="400">
 
 
-## 项目体验小程序二维码或者链接（如果已经上线）
+## 项目体验小程序二维码
 ![虾麦](./qr_logo_xiamai.jpg)
 
 ## 部署教程
