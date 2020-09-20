@@ -44,6 +44,24 @@
 
 # 效果截图
 
+用户主页
+![user](./images/user.png)
+
+微信群物品
+![group](./images/group.png)
+
+物品页面
+![item](./images/item.png)
+
+我的收藏
+![favorite](./images/favorite.png)
+
+一键生成海报
+![generate_image](./images/generate_image.png)
+
+海报
+![poster](./images/poster.png)
+
 # 代码链接
 [https://github.com/oliwang/xiamai-wechat-miniapp](https://github.com/oliwang/xiamai-wechat-miniapp)
 
