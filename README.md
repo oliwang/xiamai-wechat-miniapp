@@ -28,7 +28,31 @@
 
 
 ## 项目效果截图
-（4-6张），能体现核心功能，不需要套壳；
+
+### 用户主页
+
+<img src="./images/user.PNG" height="400">
+
+### 微信群物品
+
+<img src="./images/group.PNG" height="400">
+
+### 物品页面
+
+<img src="./images/item.PNG" height="400">
+
+
+### 我的收藏
+
+<img src="./images/favorite.PNG" height="400">
+
+### 一键生成海报
+
+<img src="./images/generate_image.PNG" height="400">
+
+### 海报
+
+<img src="./images/poster.PNG" height="400">
 
 
 ## 项目体验小程序二维码或者链接（如果已经上线）
